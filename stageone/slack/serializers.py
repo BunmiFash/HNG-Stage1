@@ -1,14 +1,15 @@
 """
-A module that serializes objects
+A module that converts objects
+into json formats
 """
 from rest_framework import serializers
-from .models import SlackDetails
+from slack.models import SlackDetails
 
 
 class SlackDetailsSerializer(serializers.ModelSerializer):
     """
-    Serializes SlackDetails objects
+    converts python object to json
     """
     class Meta:
         model = SlackDetails
-        fields = '__all__'
+        fields = ["slack_name", "current_day", "utc_time", "track", "github_file_url", "github_repo_url", "status_code"]

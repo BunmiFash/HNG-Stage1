@@ -1,14 +1,27 @@
 from django.db import models
-import datetime
 from django.utils import timezone
+from datetime import datetime
 
-# Create your models here
+"""
+A module that defines all the attribute
+the slack objects
+"""
+
 
 class SlackDetails(models.Model):
-    slack_name = models.CharField(max_length=100)
-    current_day = models.DateTimeField(default=datetime.datetime.now().day)
-    utc_time = models.DateTimeField(default=timezone.now()) 
-    track = models.CharField(max_length=100)
-    github_file_url = models.CharField(max_length=100)
-    github_repo_url = models.CharField(max_length=100)
-    status_code =  models.IntegerField()
+    """
+    class attirbutes
+    """
+    slack_name = models.CharField(max_length=100, null=False)
+    current_day = models.DateField(default=datetime.now().strftime('%A'))
+    utc_time = models.DateTimeField(default=timezone.now())
+    track = models.CharField(max_length=100, null=False)
+    github_file_url = models.CharField(max_length=100, null=False)
+    github_repo_url = models.CharField(max_length=100, null=False)
+    status_code = models.IntegerField(null=True)
+
+    def __str__(self):
+        """
+        String representation of objects
+        """
+        return self.slack_name

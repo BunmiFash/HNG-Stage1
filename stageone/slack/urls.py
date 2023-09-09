@@ -1,9 +1,9 @@
 """
-ENDPOINTS FOR SLACK APP
+A module that defines the endpoints
 """
 from django.urls import path
-from slack import views
+from slack.views import Details
 
 urlpatterns = [
-        path('details/', views.ListDetails.as_view()),
+        path('details/', Details.as_view()),
 ]
