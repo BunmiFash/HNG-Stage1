@@ -8,7 +8,7 @@ from rest_framework import generics
 from rest_framework.response import Response
 from slack.models import SlackDetails
 from django.http import HttpResponse
-import datetime
+from django.utils import timezone
 
 
 class Details(generics.ListAPIView):
@@ -26,7 +26,8 @@ class Details(generics.ListAPIView):
             if track is not None and name is not None:
                 qs = SlackDetails.objects.get(slack_name=name, track=track)
                 qs.status_code = HttpResponse.status_code
-                #qs.current_day = qs.current_day.strftime('%A')
+                #qs.current_day = timezone.now().strftime('%A')
+                #qs.utc_time = timezone.now().strftime('%Y-%m-%dT:%H-%M-%SZ')
                 qs.save()
                 serializer = SlackDetailsSerializer(qs)
         except Exception as e:

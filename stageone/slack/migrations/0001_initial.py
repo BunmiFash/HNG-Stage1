@@ -17,8 +17,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('slack_name', models.CharField(max_length=100)),
-                ('current_day', models.DateField(default=datetime.datetime(2023, 9, 9, 20, 43, 40, 4229, tzinfo=datetime.timezone.utc))),
-                ('utc_time', models.DateTimeField(default=datetime.datetime(2023, 9, 9, 20, 43, 40, 4264, tzinfo=datetime.timezone.utc))),
+                ('current_day', models.DateField(blank=True, null=True)),
+                ('utc_time', models.DateTimeField(blank=True, null=True)),
                 ('track', models.CharField(max_length=100)),
                 ('github_file_url', models.CharField(max_length=100)),
                 ('github_repo_url', models.CharField(max_length=100)),
