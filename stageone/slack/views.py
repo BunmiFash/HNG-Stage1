@@ -27,14 +27,17 @@ class Details(generics.ListAPIView):
             if track is not None and name is not None:
                 qs = SlackDetails.objects.get(slack_name=name, track=track)
                 qs.status_code = HttpResponse.status_code
+                setattr(qs, 'current_day', datetime.now().strftime('%A'))
+                setattr(qs, 'utc_time', datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ'))
                 qs.save()
                 serializer = SlackDetailsSerializer(qs)
         except Exception as e:
-            print(e)
             qs = self.get_queryset()
             for obj in qs:
                 p = obj.__dict__
                 p['status_code'] = HttpResponse.status_code
+                p[ 'current_day'] =  datetime.now().strftime('%A')
+                p['utc_time'] =  datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
             serializer = SlackDetailsSerializer(qs, many=True)
-
+    
         return Response(serializer.data)
