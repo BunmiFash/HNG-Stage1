@@ -14,7 +14,7 @@ class SlackDetails(models.Model):
     """
     slack_name = models.CharField(max_length=100, null=False)
     current_day = models.DateField(blank=True, null=True)
-    utc_time = models.DateTimeField(blank=True, null=True)
+    utc_time = models.DateTimeField( blank=True, null=True)
     track = models.CharField(max_length=100, null=False)
     github_file_url = models.CharField(max_length=100, null=False)
     github_repo_url = models.CharField(max_length=100, null=False)
